@@ -69,7 +69,10 @@ const Navbar = () => {
           {/* Desktop buttons */}
           <div className="hidden items-center gap-3 md:flex">
             {isLoggedin ? (
-              <Button text="Logout" to="/login" variant="outline" onClick={handleLogout} />
+              <>
+                <Button text="Dashboard" to="/dashboard" />
+                <Button text="Logout" to="/login" variant="outline" onClick={handleLogout} />
+              </>
             ) : (
               <>
                 <Button text="Login" to="/login" variant="outline" />
@@ -83,7 +86,10 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="mt-3.5 flex flex-col gap-2.5 border-t border-border-muted pt-3.5 md:hidden">
             {isLoggedin ? (
-              <Button text="Logout" to="/login" variant="outline" className="w-full" onClick={handleLogout} />
+              <>
+                <Button text="Dashboard" to="/dashboard" className="w-full" />
+                <Button text="Logout" to="/login" variant="outline" className="w-full" onClick={handleLogout} />
+              </>
             ) : (
               <>
                 <Button text="Login" to="/login" variant="outline" className="w-full" />

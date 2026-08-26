@@ -53,7 +53,6 @@ const Login = () => {
 
     return (
         <>
-            <Navbar />
 
             <main className="flex min-h-[calc(100vh-76px)] items-center py-14">
                 <div className="mx-auto w-full max-w-[440px] px-5">
@@ -120,7 +119,6 @@ const Login = () => {
                 </div>
             </main>
 
-            <Footer />
         </>
     )
 }

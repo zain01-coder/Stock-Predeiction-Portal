@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from '../components/Button'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import { AuthContext } from '../context/AuthProvider'
 
 const Home = () => {
+  const { isLoggedin } = useContext(AuthContext)
+
   return (
     <>
-      <Navbar />
 
       <main id="top" className="flex min-h-[calc(100vh-76px)] items-center py-16 md:py-20">
         <div className="mx-auto w-full max-w-[840px] px-4 text-center">
@@ -22,13 +22,18 @@ const Home = () => {
           </p>
 
           <div className="mx-auto mt-8 flex max-w-[280px] flex-col justify-center gap-3 sm:max-w-none sm:flex-row">
-            <Button text="Login" to="/login" variant="outline" className="w-full sm:w-auto sm:min-w-[132px]" />
-            <Button text="Get Started" to="/register" className="w-full sm:w-auto sm:min-w-[132px]" />
+            {isLoggedin ? (
+              <Button text="Explore Now" to="/dashboard" className="w-full sm:w-auto sm:min-w-[132px]" />
+            ) : (
+              <>
+                <Button text="Login" to="/login" variant="outline" className="w-full sm:w-auto sm:min-w-[132px]" />
+                <Button text="Get Started" to="/register" className="w-full sm:w-auto sm:min-w-[132px]" />
+              </>
+            )}
           </div>
         </div>
       </main>
 
-      <Footer />
     </>
   )
 }
