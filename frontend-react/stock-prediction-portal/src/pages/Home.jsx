@@ -22,7 +22,7 @@ const Home = () => {
           </p>
 
           <div className="mx-auto mt-8 flex max-w-[280px] flex-col justify-center gap-3 sm:max-w-none sm:flex-row">
-            <Button text="Login" to="/" variant="outline" className="w-full sm:w-auto sm:min-w-[132px]" />
+            <Button text="Login" to="/login" variant="outline" className="w-full sm:w-auto sm:min-w-[132px]" />
             <Button text="Get Started" to="/register" className="w-full sm:w-auto sm:min-w-[132px]" />
           </div>
         </div>

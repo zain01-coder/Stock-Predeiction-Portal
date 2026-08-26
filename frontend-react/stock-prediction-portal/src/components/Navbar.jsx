@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Button from './Button'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../context/AuthProvider'
 
 const Navbar = () => {
   // Controls the mobile dropdown menu
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { isLoggedin, setIsLoggedin } = useContext(AuthContext)
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+    setIsLoggedin(false)
+  }
 
   return (
     <nav className="min-h-[76px] border-b border-border-muted" aria-label="Main navigation">
@@ -60,16 +68,28 @@ const Navbar = () => {
 
           {/* Desktop buttons */}
           <div className="hidden items-center gap-3 md:flex">
-            <Button text="Login" to="/" variant="outline" />
-            <Button text="Get Started" to="/register" />
+            {isLoggedin ? (
+              <Button text="Logout" to="/login" variant="outline" onClick={handleLogout} />
+            ) : (
+              <>
+                <Button text="Login" to="/login" variant="outline" />
+                <Button text="Get Started" to="/register" />
+              </>
+            )}
           </div>
         </div>
 
         {/* Mobile menu */}
         {isMenuOpen && (
           <div className="mt-3.5 flex flex-col gap-2.5 border-t border-border-muted pt-3.5 md:hidden">
-            <Button text="Login" to="/" variant="outline" className="w-full" />
-            <Button text="Get Started" to="/register" className="w-full" />
+            {isLoggedin ? (
+              <Button text="Logout" to="/login" variant="outline" className="w-full" onClick={handleLogout} />
+            ) : (
+              <>
+                <Button text="Login" to="/login" variant="outline" className="w-full" />
+                <Button text="Get Started" to="/register" className="w-full" />
+              </>
+            )}
           </div>
         )}
       </div>

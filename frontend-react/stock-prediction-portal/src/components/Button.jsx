@@ -10,9 +10,9 @@ const variantStyles = {
   outline: 'border border-border-muted bg-transparent text-primary-text hover:border-gray-600 hover:bg-gray-800',
 }
 
-const Button = ({ text, to = '/', variant = 'primary', className = '' }) => {
+const Button = ({ text, to = '/', variant = 'primary', className = '', onClick }) => {
   return (
-    <Link to={to} className={`${baseStyles} ${variantStyles[variant]} ${className}`}>
+    <Link to={to} className={`${baseStyles} ${variantStyles[variant]} ${className}`} onClick={onClick}>
       {text}
     </Link>
   )

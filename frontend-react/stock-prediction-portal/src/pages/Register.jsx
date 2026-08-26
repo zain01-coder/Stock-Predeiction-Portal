@@ -46,7 +46,7 @@ const Register = () =>  {
         setLoading(true)
 
         try{
-            const response = await api.post('accounts/register/', userData)
+            const response = await api.post('accounts/api/register/', userData)
             setError({})
             setSuccess(true)
 
@@ -70,7 +70,6 @@ const Register = () =>  {
 
     return (
         <>
-            <Navbar />
 
             <main className="flex min-h-[calc(100vh-76px)] items-center py-14">
                 <div className="mx-auto w-full max-w-[440px] px-5">
@@ -175,7 +174,7 @@ const Register = () =>  {
 
                         <div className="mt-6 border-t border-border-muted pt-5 text-center text-sm text-secondary-text">
                             Already have an account?{' '}
-                            <Link to="/" className="font-semibold text-accent hover:underline">
+                            <Link to="/login" className="font-semibold text-accent hover:underline">
                                 Log in
                             </Link>
                         </div>
@@ -187,7 +186,6 @@ const Register = () =>  {
                 </div>
             </main>
 
-            <Footer />
         </>
     )
 }
