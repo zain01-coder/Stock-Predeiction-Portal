@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
 import api from '../api/axiosInstance.js'
 
@@ -46,7 +44,7 @@ const Register = () =>  {
         setLoading(true)
 
         try{
-            const response = await api.post('accounts/api/register/', userData)
+            await api.post('accounts/api/register/', userData)
             setError({})
             setSuccess(true)
 

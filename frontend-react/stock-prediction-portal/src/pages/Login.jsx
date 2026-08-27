@@ -1,6 +1,4 @@
 import React, { useContext, useState } from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
 import api from '../api/axiosInstance'
 import { useNavigate } from 'react-router-dom'
@@ -20,10 +18,9 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
-    const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
-    const {isLoggedin, setIsLoggedin} = useContext(AuthContext)
+    const {setIsLoggedin} = useContext(AuthContext)
 
 
     const handleSubmit = async (e) => {
@@ -43,7 +40,7 @@ const Login = () => {
             setIsLoggedin(true)
             navigate('/')
         }
-        catch (err) {
+        catch {
             setError('Invalid credentials')
         }
         finally {

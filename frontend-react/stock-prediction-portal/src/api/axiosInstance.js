@@ -42,7 +42,7 @@ api.interceptors.response.use(
                 originalRequest.headers['Authorization'] = `Bearer ${response.data.access}`
                 return api(originalRequest)
             }
-            catch(error){
+            catch{
                 localStorage.removeItem('accessToken')
                 localStorage.removeItem('refreshToken')
                 window.location.href = '/login'
