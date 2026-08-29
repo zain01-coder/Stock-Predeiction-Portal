@@ -9,7 +9,7 @@ services:
     rootDir: backend-drf
     plan: free
     buildCommand: "./build.sh"
-    startCommand: "gunicorn stock_prediction.wsgi:application"
+    startCommand: "gunicorn stock_prediction.wsgi:application --workers 1 --threads 2 --timeout 120"
     envVars:
       - key: SECRET_KEY
         generateValue: true
@@ -27,6 +27,14 @@ services:
         value: "https://stock-prediction-frontend.onrender.com"
       - key: CSRF_TRUSTED_ORIGINS
         value: "https://stock-prediction-backend.onrender.com"
+      - key: TF_CPP_MIN_LOG_LEVEL
+        value: "3"
+      - key: TF_NUM_INTRAOP_THREADS
+        value: "1"
+      - key: TF_NUM_INTEROP_THREADS
+        value: "1"
+      - key: OMP_NUM_THREADS
+        value: "1"
 
   - type: web
     name: stock-prediction-frontend
