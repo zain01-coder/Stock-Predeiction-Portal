@@ -179,3 +179,30 @@ CSRF_TRUSTED_ORIGINS = config(
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# Logging
+# Django's default config only emails admins on 500s when DEBUG=False,
+# it never prints tracebacks to console — so platform log capture (e.g.
+# Render) sees nothing. Force errors to stdout so they're visible there.
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}
