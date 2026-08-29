@@ -34,6 +34,7 @@ class StockPredictionAPIView(APIView):
             end = now
             df = yf.download(ticker, start, end)
             df.columns = df.columns.droplevel(1)
+            df = df.dropna()
             print(df)
             if df.empty:
                 return Response({'error':'No data found for the given ticker', 'status':status.HTTP_404_NOT_FOUND})
